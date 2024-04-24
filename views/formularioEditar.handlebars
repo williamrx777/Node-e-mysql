@@ -1,0 +1,22 @@
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <form action="/editar" method="post" enctype="multipart/form-data">
+
+                    <img src="../imagem/{{produto.imagem}}" width="200px">
+                    <input type="hidden" name="nomeImagem" value="{{produto.imagem}}">
+                    <input type="hidden" name="codigo" value="{{produto.codigo}}">
+                    <input type="text" name="nome" value="{{produto.nome}}" class="form-control" placeholder="Nome do produto"><br>
+                    <input type="number" name="valor" value="{{produto.valor}}" class="form-control" placeholder="valor do produto"><br>
+                    <input type="file" name="imagem" {{produto.imagem}} class="form-control"><br>
+                    <input type="submit" class="btn btn-primary" value="Editar">
+                    <a href="/" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    
+</main>

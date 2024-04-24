@@ -1,0 +1,24 @@
+{
+  "name": "node-e-mysql",
+  "version": "1.0.0",
+  "description": "Projeto NodeJs e Mysql",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "express-handlebars",
+    "bootstrap",
+    "mysql"
+  ],
+  "author": "william rodrigues",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.0",
+    "express-handlebars": "^7.1.2",
+    "mysql2": "^3.9.4",
+    "nodemon": "^3.1.0"
+  }
+}
