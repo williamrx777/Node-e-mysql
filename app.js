@@ -15,7 +15,13 @@ const conexao = mysql.createConnection({
     database:'Projeto'
 })
 
-app.engine('handlebars', engine())
+app.engine('handlebars', engine({
+    helpers: {
+        condicionalIgualdade: function (parametro1, parametro2,options){
+            return parametro1 === parametro2 ? options.fn(this): options.inverse(this)
+        }
+    }
+}))
 app.set('view engine', 'handlebars')
 app.set('views', './views')
 app.use(fileupload())
@@ -69,19 +75,24 @@ app.post('/cadastrar', function(req,res){
 })
 
 app.get('/remover/:codigo&:imagem', function(req,res){
-    // console.log(req.params.codigo)
-    // console.log(req.params.imagem)
-    // res.end()
-    let sql = `DELETE FROM Produtos WHERE codigo = ${req.params.codigo}`
+    try{
 
-    conexao.query(sql, function(erro, retorno){
-        if(erro) throw erro
-
-        fs.unlink(__dirname+'/imagem/'+req.params.imagem, (erro_imagem)=> {
-            console.log('removido com sucesso')
+        // console.log(req.params.codigo)
+        // console.log(req.params.imagem)
+        // res.end()
+        let sql = `DELETE FROM Produtos WHERE codigo = ${req.params.codigo}`
+    
+        conexao.query(sql, function(erro, retorno){
+            if(erro) throw erro
+    
+            fs.unlink(__dirname+'/imagem/'+req.params.imagem, (erro_imagem)=> {
+                console.log('removido com sucesso')
+            })
         })
-    })
-    res.redirect('/')
+        res.redirect('/okRemover')
+    }catch(erro){
+        res.redirect('/falhaRemover')
+    }
 })
 
 app.get('/formularioEditar/:codigo', function(req, res){
